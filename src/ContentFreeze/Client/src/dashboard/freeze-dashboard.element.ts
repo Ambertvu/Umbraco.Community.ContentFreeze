@@ -204,7 +204,7 @@ export class ContentFreezeDashboardElement extends UmbLitElement {
         </div>
         <p class="status-line countdown">
           <uui-icon name=${active ? "icon-lock" : "icon-alarm-clock"}></uui-icon>
-          ${active ? html`Editing is frozen. Ends in <strong>${formatDuration(this._seconds)}</strong>.` : html`Starts in <strong>${formatDuration(this._seconds)}</strong>.`}
+          <span>${active ? html`Editing is frozen. Ends in <strong>${formatDuration(this._seconds)}</strong>.` : html`Starts in <strong>${formatDuration(this._seconds)}</strong>.`}</span>
         </p>
         ${this.#renderDisabledNote()}
         <dl>

@@ -134,7 +134,7 @@ D = function() {
         </div>
         <p class="status-line countdown">
           <uui-icon name=${e ? "icon-lock" : "icon-alarm-clock"}></uui-icon>
-          ${e ? n`Editing is frozen. Ends in <strong>${x(this._seconds)}</strong>.` : n`Starts in <strong>${x(this._seconds)}</strong>.`}
+          <span>${e ? n`Editing is frozen. Ends in <strong>${x(this._seconds)}</strong>.` : n`Starts in <strong>${x(this._seconds)}</strong>.`}</span>
         </p>
         ${s(this, a, $).call(this)}
         <dl>
@@ -378,4 +378,4 @@ export {
   u as ContentFreezeDashboardElement,
   u as element
 };
-//# sourceMappingURL=freeze-dashboard.element-BSDfjLmL.js.map
+//# sourceMappingURL=freeze-dashboard.element-D-nPFHvU.js.map

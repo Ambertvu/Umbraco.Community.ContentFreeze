@@ -34,6 +34,8 @@ export const FROZEN_ACTION_ALIASES = [
   "Umb.EntityAction.Document.Publish",
   "Umb.EntityAction.Document.Unpublish",
   "Umb.EntityAction.Document.Rollback",
+  // The Rollback button in the workspace's history box (newer 17.x versions)
+  "Umb.AuditLogAction.Document.Rollback",
   "Umb.EntityAction.Document.PublicAccess",
   "Umb.EntityAction.Document.RecycleBin.Trash",
   "Umb.EntityAction.Document.RecycleBin.Restore",

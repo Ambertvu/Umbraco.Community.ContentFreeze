@@ -1,7 +1,7 @@
-const i = "ContentFreeze.Condition.NotFrozen", o = [
+const o = "ContentFreeze.Condition.NotFrozen", i = [
   {
     type: "condition",
-    alias: i,
+    alias: o,
     name: "Content Freeze Not Frozen Condition",
     api: () => import("./not-frozen.condition-B2oKE7fm.js")
   }
@@ -24,6 +24,8 @@ const i = "ContentFreeze.Condition.NotFrozen", o = [
   "Umb.EntityAction.Document.Publish",
   "Umb.EntityAction.Document.Unpublish",
   "Umb.EntityAction.Document.Rollback",
+  // The Rollback button in the workspace's history box (newer 17.x versions)
+  "Umb.AuditLogAction.Document.Rollback",
   "Umb.EntityAction.Document.PublicAccess",
   "Umb.EntityAction.Document.RecycleBin.Trash",
   "Umb.EntityAction.Document.RecycleBin.Restore",
@@ -111,7 +113,7 @@ const i = "ContentFreeze.Condition.NotFrozen", o = [
     type: "dashboard",
     alias: "ContentFreeze.Dashboard",
     name: "Content Freeze Dashboard",
-    element: () => import("./freeze-dashboard.element-BSDfjLmL.js"),
+    element: () => import("./freeze-dashboard.element-D-nPFHvU.js"),
     weight: 50,
     meta: {
       label: "Content Freeze",
@@ -127,7 +129,7 @@ const i = "ContentFreeze.Condition.NotFrozen", o = [
     name: "Content Freeze Entrypoint",
     alias: "ContentFreeze.Entrypoint",
     type: "backofficeEntryPoint",
-    js: () => import("./entrypoint-DvrKi_o2.js")
+    js: () => import("./entrypoint-OPxoXwrr.js")
   }
 ], l = [
   {
@@ -154,15 +156,15 @@ const i = "ContentFreeze.Condition.NotFrozen", o = [
 ], u = [
   ...r,
   ...c,
-  ...o,
+  ...i,
   ...l,
   ...b,
   ...m,
   ...s
 ];
 export {
-  i as C,
+  o as C,
   y as F,
   u as m
 };
-//# sourceMappingURL=bundle.manifests-U9uuI2NG.js.map
+//# sourceMappingURL=bundle.manifests-BkEayc_2.js.map
