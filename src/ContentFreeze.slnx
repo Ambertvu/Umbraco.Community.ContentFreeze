@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.github/CONTRIBUTING.md" />
+    <File Path="../.github/README.md" />
+    <File Path="../docs/README_nuget.md" />
+    <File Path="../docs/README_nuget.Hangfire.md" />
+    <File Path="../umbraco-marketplace.json" />
+  </Folder>
+  <Project Path="ContentFreeze.TestSite/ContentFreeze.TestSite.csproj" />
+  <Project Path="ContentFreeze/ContentFreeze.csproj" />
+  <Project Path="ContentFreeze.Hangfire/ContentFreeze.Hangfire.csproj" />
+</Solution>

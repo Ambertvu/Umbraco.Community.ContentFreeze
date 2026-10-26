@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.ContentFreeze.Hangfire</Product>
+    <PackageId>Umbraco.Community.ContentFreeze.Hangfire</PackageId>
+    <Title>Content Freeze for Hangfire</Title>
+    <Description>Add-on for Umbraco.Community.ContentFreeze: holds back Hangfire jobs (for example from Cultiv.Hangfire) while a content freeze is active and runs them once it ends.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;deployment;content-freeze;hangfire</PackageTags>
+    <Authors>Ambert van Unen</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Ambert van Unen</Copyright>
+    <PackageProjectUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.Hangfire.md">
+      <Pack>True</Pack>
+      <PackagePath>\README_nuget.md</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.ContentFreeze</Product>
+    <PackageId>Umbraco.Community.ContentFreeze</PackageId>
+    <Title>Content Freeze</Title>
+    <Description>Freeze content and media editing in the Umbraco backoffice during deployments, migrations and uSync imports. Schedule a freeze from your CI/CD pipeline, warn editors with a countdown, and let it expire automatically.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;deployment;ci-cd;content-freeze;read-only;usync</PackageTags>
+    <Authors>Ambert van Unen</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) Â© Ambert van Unen</Copyright>
+    <PackageProjectUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon></PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Website" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" />
+    <PackageReference Include="Umbraco.Cms.Api.Common" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Dont include the client folder as part of packaging nuget build -->
+    <Content Remove="Client\**" />
+
+    <!-- However make the Umbraco-package.json included for dotnet pack or nuget package and visible to the solution -->
+    <None Include="Client\public\umbraco-package.json" Pack="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

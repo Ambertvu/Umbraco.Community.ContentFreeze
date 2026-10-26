@@ -1,0 +1,14 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json", 
+    "AuthorDetails": {
+      "Name": "Ambert van Unen",
+      "ImageUrl": "https://github.com/Ambertvu.png"
+    },
+    "Category": "",
+    "Description": "",
+    "LicenseTypes": [ "Free" ],
+    "IssueTrackerUrl": "https://github.com/Ambertvu/Umbraco.Community.ContentFreeze/issues",
+    "PackageType": "Package",
+    "Tags": [],
+    "Title": "Content Freeze"
+  }

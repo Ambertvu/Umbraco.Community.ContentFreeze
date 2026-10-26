@@ -1,0 +1,14 @@
+{
+  "id": "ContentFreeze",
+  "name": "ContentFreeze",
+  "version": "0.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Content Freeze Bundle",
+      "alias": "ContentFreeze.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/ContentFreeze/content-freeze.js"
+    }
+  ]
+}
