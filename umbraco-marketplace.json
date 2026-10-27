@@ -1,14 +1,14 @@
 {
-    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json", 
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
     "AuthorDetails": {
       "Name": "Ambert van Unen",
       "ImageUrl": "https://github.com/Ambertvu.png"
     },
-    "Category": "",
-    "Description": "",
+    "Category": "Developer Tools",
+    "Description": "Freeze content and media editing in the Umbraco backoffice during deployments, migrations and uSync imports. Schedule a freeze from your CI/CD pipeline, warn editors with a countdown, and let it expire automatically. Add-ons freeze Umbraco Forms, Umbraco Commerce and Umbraco AI too, and hold back Hangfire jobs until the freeze ends.",
     "LicenseTypes": [ "Free" ],
     "IssueTrackerUrl": "https://github.com/Ambertvu/Umbraco.Community.ContentFreeze/issues",
     "PackageType": "Package",
-    "Tags": [],
+    "Tags": [ "deployment", "ci-cd", "content freeze", "read-only", "usync", "editors" ],
     "Title": "Content Freeze"
   }
