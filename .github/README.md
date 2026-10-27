@@ -304,6 +304,60 @@ It adds a global Hangfire filter, so it works however Hangfire is set up. A job 
 
 Jobs are matched by recurring job id, `Type.Method` (`ImportService.RunAsync`), class name or full type name. Hangfire jobs are held back in both enforcement modes.
 
+## Umbraco Forms
+
+Install the add-on to freeze Umbraco Forms too:
+
+`dotnet add package Umbraco.Community.ContentFreeze.Forms`
+
+During a freeze, forms (with their workflows), folders, data sources and prevalue sources cannot be created, changed, moved or deleted in the backoffice; the save, create and delete actions are hidden. Submissions from the website are never blocked, in either enforcement mode.
+
+```json
+"ContentFreeze": {
+  "Forms": {
+    "FreezeForms": true,
+    "FreezeEntries": false,
+    "FreezeSecurity": false
+  }
+}
+```
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `FreezeForms` | `true` | Forms, workflows, folders, data sources and prevalue sources. |
+| `FreezeEntries` | `false` | Editing, approving, rejecting and deleting entries, and retrying workflows, in the backoffice. |
+| `FreezeSecurity` | `false` | Form permissions per user and user group. |
+
+Fields in the form designer stay editable during a freeze; the form just cannot be saved. Changes made from code are blocked too; uSync.Forms imports go through, like other [uSync](#usync) imports.
+
+## Freezing other packages
+
+Content Freeze has three extension points for packages that keep their own data. Register them in a composer that runs after `ContentFreezeComposer`:
+
+- **`IFreezeEndpointRule`**: picks out Management API actions that change something. Matching requests get a 400 with the freeze message, before the controller runs. Use this when a package has no cancelable notifications, or handles a cancelled one badly.
+- **`IFreezeEnforcer`**: cancels a notification with the freeze message, for your own notification handlers.
+- **`IFrozenActionsProvider`**: backoffice action aliases to hide during a freeze, from C#, without a client build.
+
+```csharp
+[ComposeAfter(typeof(ContentFreezeComposer))]
+public class MyPackageFreezeComposer : IComposer
+{
+    public void Compose(IUmbracoBuilder builder) => builder
+        .AddFreezeEndpointRule<MyPackageFreezeRule>()
+        .AddFrozenActions<MyPackageFrozenActions>();
+}
+
+public class MyPackageFreezeRule : IFreezeEndpointRule
+{
+    public string? GetOperation(ControllerActionDescriptor action, HttpRequest request)
+        => action.ControllerTypeInfo.Namespace?.StartsWith("MyPackage.Api.Management", StringComparison.Ordinal) is true
+            ? "my package change"
+            : null;
+}
+```
+
+Only write requests (POST, PUT, PATCH, DELETE) reach a rule. The Forms add-on is a complete example.
+
 ## Webhooks and notifications
 
 In **Settings → Webhooks** you will find five events under *Content Freeze*: Scheduled, Started, Extended, Ended (manually or by expiry) and Cancelled. The payload has the freeze id, state, times, reason, correlation id, who started and ended it, and whether it ended early.
@@ -364,7 +418,7 @@ The mode can be changed in appsettings without a restart.
 
 Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
 
-Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, uSync and Cultiv.Hangfire installed, for trying changes by hand.
+Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, its add-ons, uSync, Umbraco Forms and Cultiv.Hangfire installed, for trying changes by hand.
 
 ## Acknowledgments
 

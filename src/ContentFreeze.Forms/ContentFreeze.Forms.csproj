@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.ContentFreeze.Forms</Product>
+    <PackageId>Umbraco.Community.ContentFreeze.Forms</PackageId>
+    <Title>Content Freeze for Umbraco Forms</Title>
+    <Description>Add-on for Umbraco.Community.ContentFreeze: freezes Umbraco Forms forms, workflows, folders, data sources and prevalue sources in the backoffice while a content freeze is active. Website form submissions keep working.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;deployment;content-freeze;umbraco-forms</PackageTags>
+    <Authors>Ambert van Unen</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Ambert van Unen</Copyright>
+    <PackageProjectUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Forms.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ContentFreeze.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.Forms.md">
+      <Pack>True</Pack>
+      <PackagePath>\README_nuget.md</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -27,6 +27,7 @@ jobs:
         run: |
           dotnet pack src/ContentFreeze/ContentFreeze.csproj -c Release /p:Version=${{github.ref_name}}
           dotnet pack src/ContentFreeze.Hangfire/ContentFreeze.Hangfire.csproj -c Release /p:Version=${{github.ref_name}}
+          dotnet pack src/ContentFreeze.Forms/ContentFreeze.Forms.csproj -c Release /p:Version=${{github.ref_name}}
 
       - name: Push to NuGet
         run: dotnet nuget push **/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json

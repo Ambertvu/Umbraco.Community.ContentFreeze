@@ -38,17 +38,12 @@ internal class FreezeEnforcementHandler :
     INotificationHandler<PublicAccessEntrySavingNotification>,
     INotificationHandler<PublicAccessEntryDeletingNotification>
 {
-    private readonly IFreezeGuard _guard;
-    private readonly IEventMessagesFactory _eventMessagesFactory;
+    private readonly IFreezeEnforcer _enforcer;
     private readonly IOptionsMonitor<ContentFreezeOptions> _options;
 
-    public FreezeEnforcementHandler(
-        IFreezeGuard guard,
-        IEventMessagesFactory eventMessagesFactory,
-        IOptionsMonitor<ContentFreezeOptions> options)
+    public FreezeEnforcementHandler(IFreezeEnforcer enforcer, IOptionsMonitor<ContentFreezeOptions> options)
     {
-        _guard = guard;
-        _eventMessagesFactory = eventMessagesFactory;
+        _enforcer = enforcer;
         _options = options;
     }
 
@@ -117,26 +112,41 @@ internal class FreezeEnforcementHandler :
         }
     }
 
-    private void Block(ICancelableNotification notification, string operation)
+    private void Block(ICancelableNotification notification, string operation) => _enforcer.Block(notification, operation);
+}
+
+internal class FreezeEnforcer : IFreezeEnforcer
+{
+    private readonly IFreezeGuard _guard;
+    private readonly IEventMessagesFactory _eventMessagesFactory;
+
+    public FreezeEnforcer(IFreezeGuard guard, IEventMessagesFactory eventMessagesFactory)
+    {
+        _guard = guard;
+        _eventMessagesFactory = eventMessagesFactory;
+    }
+
+    public bool Block(ICancelableNotification notification, string operation)
     {
         if (notification.Cancel)
         {
-            return;
+            return false;
         }
 
         Freeze? freeze = _guard.GetBlockingFreeze(operation);
         if (freeze is null)
         {
-            return;
+            return false;
         }
 
         notification.Cancel = true;
 
-        // The notification's Messages are this same request-scoped collection.
+        // A notification's Messages are this same request-scoped collection.
         _eventMessagesFactory.Get().Add(new EventMessage("Content freeze", _guard.GetBlockedMessage(freeze), EventMessageType.Error)
         {
             IsDefaultEventMessage = true,
         });
+        return true;
     }
 }
 

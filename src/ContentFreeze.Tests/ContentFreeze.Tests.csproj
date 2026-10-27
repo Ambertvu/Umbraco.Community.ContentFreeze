@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
     <ProjectReference Include="..\ContentFreeze.Hangfire\ContentFreeze.Hangfire.csproj" />
+    <ProjectReference Include="..\ContentFreeze.Forms\ContentFreeze.Forms.csproj" />
   </ItemGroup>
 
   <ItemGroup>

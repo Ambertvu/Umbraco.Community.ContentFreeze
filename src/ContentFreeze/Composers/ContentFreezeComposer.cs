@@ -36,9 +36,12 @@ public class ContentFreezeComposer : IComposer
         builder.AddPausableJobs();
 
         builder.Services.AddSingleton<IPackageManifestReader, LoginNoticeManifestReader>();
+        builder.Services.AddSingleton<IPackageManifestReader, FrozenActionsManifestReader>();
 
-        builder.Services.AddScoped<BlueprintFreezeFilter>();
-        builder.Services.Configure<MvcOptions>(options => options.Filters.AddService<BlueprintFreezeFilter>());
+        builder.Services.AddSingleton<IFreezeEnforcer, FreezeEnforcer>();
+        builder.AddFreezeEndpointRule<BlueprintFreezeRule>();
+        builder.Services.AddScoped<FreezeEndpointFilter>();
+        builder.Services.Configure<MvcOptions>(options => options.Filters.AddService<FreezeEndpointFilter>());
 
         builder.Services.AddSingleton<IAuthorizationHandler, ManageFreezeAuthorizationHandler>();
         builder.Services.AddAuthorization(options => options.AddPolicy(ContentFreezeAuthorizationPolicies.Manage, policy =>

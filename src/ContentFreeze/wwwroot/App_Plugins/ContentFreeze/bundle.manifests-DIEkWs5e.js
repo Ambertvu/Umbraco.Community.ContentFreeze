@@ -129,7 +129,7 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     name: "Content Freeze Entrypoint",
     alias: "ContentFreeze.Entrypoint",
     type: "backofficeEntryPoint",
-    js: () => import("./entrypoint-CBuXVBzm.js")
+    js: () => import("./entrypoint-BWFClf7m.js")
   }
 ], l = [
   {
@@ -167,4 +167,4 @@ export {
   y as F,
   u as m
 };
-//# sourceMappingURL=bundle.manifests-CsFx7rxU.js.map
+//# sourceMappingURL=bundle.manifests-DIEkWs5e.js.map
