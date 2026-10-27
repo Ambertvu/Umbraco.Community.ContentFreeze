@@ -38,6 +38,12 @@ public class ContentFreezeOptions
     public bool DeferScheduledPublishing { get; set; } = true;
 
     /// <summary>
+    /// Lets uSync imports write during a freeze, at startup and from the dashboard alike: a deploy usually
+    /// imports while editing is frozen.
+    /// </summary>
+    public bool AllowUSyncImports { get; set; } = true;
+
+    /// <summary>
     /// Umbraco background jobs that skip their runs while a freeze is active, by class name
     /// (<c>ContentVersionCleanupJob</c>), full type name or distributed job name. Read at startup.
     /// </summary>

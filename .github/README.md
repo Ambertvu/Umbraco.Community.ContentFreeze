@@ -12,11 +12,11 @@ Safe deploys for Umbraco. Content Freeze temporarily blocks content and media ch
 - **Enforced on the server.** Saves, publishes, moves, deletes and the rest are cancelled by notification handlers, not just hidden in the UI.
 - **Audit trail and webhooks.** See who froze editing, why and for how long, and send Slack or Teams messages through Umbraco webhooks.
 
-Content Freeze is for Umbraco 17+.
+Content Freeze is for Umbraco 17. Umbraco 18 support follows once it has been tested there.
 
 ## Installation
 
-Add the package to an existing Umbraco website (v17+) from NuGet:
+Add the package to an existing Umbraco 17 website from NuGet:
 
 `dotnet add package Umbraco.Community.ContentFreeze`
 
@@ -44,11 +44,17 @@ While a freeze is active, these are cancelled for backoffice and API users:
 
 The backoffice also makes document and media workspaces read-only and hides the write actions, so editors do not find out only when they press Save.
 
-**Not blocked:** the website itself, members, settings (document types, data types, templates), and code that runs without a backoffice user, such as scheduled jobs, uSync imports at startup, form handlers or imports. See [Enforcement modes](#enforcement-modes) if you want those blocked too, and [Background jobs](#background-jobs) to pause jobs during a freeze.
+**Not blocked:** the website itself, members, settings (document types, data types, templates), and code that runs without a backoffice user, such as scheduled jobs, form handlers or imports. uSync imports go through by default; see [uSync](#usync). See [Enforcement modes](#enforcement-modes) if you want those blocked too, and [Background jobs](#background-jobs) to pause jobs during a freeze.
 
 ### Scheduled publishing
 
 Scheduled publishing is held back while a freeze is active. Items that were due during the freeze are published (or unpublished) on the first run after it ends. Set `DeferScheduledPublishing` to `false` to let it run during a freeze.
+
+### uSync
+
+A deploy usually imports with uSync while editing is frozen, so uSync imports are let through by default: at startup, from the uSync dashboard and in both [enforcement modes](#enforcement-modes). Everything else stays blocked during the import, including editors saving at the same moment.
+
+Set `AllowUSyncImports` to `false` to block uSync imports like any other change.
 
 ## Permissions
 
@@ -309,6 +315,7 @@ There is also a health check, **Content Freeze**, in the Health Check dashboard.
   "MaxDurationMinutes": 480,
   "MinimumWarningMinutes": 0,
   "DeferScheduledPublishing": true,
+  "AllowUSyncImports": true,
   "PausedJobs": [],
   "FreezeDictionary": true,
   "FreezeDomains": true,
@@ -325,13 +332,14 @@ There is also a health check, **Content Freeze**, in the Health Check dashboard.
 | `MaxDurationMinutes` | `480` | Maximum total length of a freeze, extensions included. |
 | `MinimumWarningMinutes` | `0` | Minimum time between scheduling and start. Requests can skip it with `"force": true`. |
 | `DeferScheduledPublishing` | `true` | Hold back scheduled publishing during a freeze. |
+| `AllowUSyncImports` | `true` | Let uSync imports through during a freeze. See [uSync](#usync). |
 | `PausedJobs` | empty | Background jobs that skip their runs during a freeze. See [Background jobs](#background-jobs). |
 | `FreezeDictionary`, `FreezeDomains`, `FreezePublicAccess`, `FreezeBlueprints` | `true` | Include these in the freeze. |
 
 ### Enforcement modes
 
 - **`BackOfficeOnly`** (default): only changes made by a backoffice user or API user are blocked. Background jobs, startup imports and website code keep working.
-- **`Strict`**: every change is blocked, unless it runs inside `AllowWrites(...)` or the user has *Edit during a freeze*. This includes Umbraco's own jobs, such as version cleanup: they fail during the freeze and try again on their next run. [Pause them](#pausing-umbraco-background-jobs) to skip them cleanly instead.
+- **`Strict`**: every change is blocked, unless it runs inside `AllowWrites(...)`, comes from a uSync import or the user has *Edit during a freeze*. This includes Umbraco's own jobs, such as version cleanup: they fail during the freeze and try again on their next run. [Pause them](#pausing-umbraco-background-jobs) to skip them cleanly instead.
 
 The mode can be changed in appsettings without a restart.
 
@@ -345,6 +353,8 @@ The mode can be changed in appsettings without a restart.
 ## Contributing
 
 Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
+
+Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, uSync and Cultiv.Hangfire installed, for trying changes by hand.
 
 ## Acknowledgments
 

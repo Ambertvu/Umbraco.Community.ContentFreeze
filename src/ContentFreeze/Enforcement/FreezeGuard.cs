@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ContentFreeze.Configuration;
 using ContentFreeze.Models;
 using ContentFreeze.Services;
@@ -69,6 +70,12 @@ internal class FreezeGuard : IFreezeGuard
             return null;
         }
 
+        // Only now, as walking the stack is not free; this point is only reached for writes we would block.
+        if (options.AllowUSyncImports && IsWrittenByUSync())
+        {
+            return null;
+        }
+
         _freezeService.RecordBlockedAttempt(freeze.Id);
         _logger.LogInformation(
             "Content freeze {FreezeId} blocked {Operation} by {User}",
@@ -78,6 +85,13 @@ internal class FreezeGuard : IFreezeGuard
 
         return freeze;
     }
+
+    // uSync raises its import notifications asynchronously, so an AllowWrites scope set from a handler would not
+    // reach the import. uSync calls the content services directly, though, so its code is on the stack.
+    private static bool IsWrittenByUSync()
+        => new StackTrace(skipFrames: 1, fNeedFileInfo: false)
+            .GetFrames()
+            .Any(frame => frame.GetMethod()?.DeclaringType?.Namespace?.StartsWith("uSync", StringComparison.Ordinal) is true);
 
     public string GetBlockedMessage(Freeze freeze)
     {

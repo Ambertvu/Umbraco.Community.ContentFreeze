@@ -9,4 +9,5 @@
   <Project Path="ContentFreeze.TestSite/ContentFreeze.TestSite.csproj" />
   <Project Path="ContentFreeze/ContentFreeze.csproj" />
   <Project Path="ContentFreeze.Hangfire/ContentFreeze.Hangfire.csproj" />
+  <Project Path="ContentFreeze.Tests/ContentFreeze.Tests.csproj" />
 </Solution>
