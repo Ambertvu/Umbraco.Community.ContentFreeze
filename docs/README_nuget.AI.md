@@ -8,6 +8,6 @@ Add-on for [Umbraco.Community.ContentFreeze](https://www.nuget.org/packages/Umbr
 - Save, create and delete actions are hidden during a freeze, and blocked on the server.
 - Content that AI changes is already frozen by the core package.
 
-Requires Umbraco AI 17. Sites on the older 1.x releases need to update Umbraco AI first.
+Requires Umbraco AI 18.
 
 See the [documentation on GitHub](https://github.com/Ambertvu/Umbraco.Community.ContentFreeze#umbraco-ai) for settings.

@@ -1,6 +1,6 @@
 import { UmbControllerBase as r } from "@umbraco-cms/backoffice/class-api";
 import { UMB_VARIANT_WORKSPACE_CONTEXT as i } from "@umbraco-cms/backoffice/workspace";
-import { C as n } from "./freeze.context-UDroHYhG.js";
+import { C as n } from "./freeze.context-BxXhCb2B.js";
 const s = "ContentFreeze.ReadOnly";
 class m extends r {
   #e = !1;
@@ -23,4 +23,4 @@ export {
   m as ContentFreezeWorkspaceContext,
   m as api
 };
-//# sourceMappingURL=freeze.workspace-context-DL2ggEAV.js.map
+//# sourceMappingURL=freeze.workspace-context-BrEYbOe-.js.map

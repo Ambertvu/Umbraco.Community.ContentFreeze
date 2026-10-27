@@ -2,7 +2,7 @@ import { nothing as r, html as n, css as N, state as o, customElement as O } fro
 import { UmbLitElement as U } from "@umbraco-cms/backoffice/lit-element";
 import { umbConfirmModal as v } from "@umbraco-cms/backoffice/modal";
 import { tryExecute as I } from "@umbraco-cms/backoffice/resources";
-import { C as L, F as z, f as x, a as p } from "./freeze.context-UDroHYhG.js";
+import { C as L, F as z, f as x, a as p } from "./freeze.context-BxXhCb2B.js";
 var P = Object.defineProperty, H = Object.getOwnPropertyDescriptor, C = (t) => {
   throw TypeError(t);
 }, l = (t, e, i, c) => {
@@ -378,4 +378,4 @@ export {
   u as ContentFreezeDashboardElement,
   u as element
 };
-//# sourceMappingURL=freeze-dashboard.element-BaJ51hzR.js.map
+//# sourceMappingURL=freeze-dashboard.element-DuJ2dcoi.js.map

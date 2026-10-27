@@ -1,6 +1,6 @@
 import { UMB_AUTH_CONTEXT as E } from "@umbraco-cms/backoffice/auth";
-import { c as i } from "./client.gen-CtZ_TvPO.js";
-import { F as T, C as _ } from "./bundle.manifests-DIEkWs5e.js";
+import { c as i } from "./client.gen-CrvFvqYF.js";
+import { F as T, C as _ } from "./bundle.manifests-DFlBkIXE.js";
 const s = "contentFreezeFrozenActions", f = async (r, n) => {
   const e = /* @__PURE__ */ new Set(), o = (t) => {
     e.has(t) || (e.add(t), n.appendCondition(t, { alias: _ }));
@@ -18,4 +18,4 @@ export {
   f as onInit,
   A as onUnload
 };
-//# sourceMappingURL=entrypoint-BWFClf7m.js.map
+//# sourceMappingURL=entrypoint-JX0ilPqM.js.map

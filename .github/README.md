@@ -21,11 +21,11 @@ The package's major version matches the Umbraco version it runs on, and so do th
 | 17 (LTS) | 17.x | `v17/dev` |
 | 18 | 18.x | `v18/dev` |
 
-This is the Umbraco 17 branch. It gets fixes for as long as Umbraco 17 is supported.
+This is the Umbraco 18 branch. For Umbraco 17, use version 17.x from the `v17/dev` branch.
 
 ## Installation
 
-Add the package to an existing Umbraco 17 website from NuGet:
+Add the package to an existing Umbraco 18 website from NuGet:
 
 `dotnet add package Umbraco.Community.ContentFreeze`
 
@@ -380,7 +380,7 @@ Install the add-on to freeze the Umbraco AI configuration too:
 
 `dotnet add package Umbraco.Community.ContentFreeze.AI`
 
-The add-on requires Umbraco AI 17. Sites on the older 1.x releases need to update Umbraco AI first.
+The add-on requires Umbraco AI 18.
 
 During a freeze, connections, profiles, contexts, guardrails, the AI settings, prompts and agents cannot be created, changed, deleted or rolled back. Using AI is never blocked: chat, running prompts and agents, property actions, embeddings, image generation and testing a connection keep working.
 

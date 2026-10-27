@@ -12,3 +12,7 @@ Each Umbraco major version has its own pair of branches, like Umbraco's own pack
 - `v17/main` and `v18/main`: what has been released. A release is a tag such as `17.0.0` or `18.0.0` on the main branch.
 
 A fix that applies to both versions goes into `v17/dev` first and is then merged into `v18/dev`.
+
+## Regenerating the API client
+
+With the test site running, run `npm run generate-client` in `src/ContentFreeze/Client`. It reads the API document from `/umbraco/openapi/contentfreeze.json` and needs Node 22.18 or later.
