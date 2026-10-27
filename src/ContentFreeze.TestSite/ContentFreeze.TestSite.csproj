@@ -16,6 +16,9 @@
     <PackageReference Include="uSync" />
     <PackageReference Include="Cultiv.Hangfire" />
     <PackageReference Include="Umbraco.Forms" />
+    <PackageReference Include="Umbraco.AI" />
+    <PackageReference Include="Umbraco.AI.Prompt" />
+    <PackageReference Include="Umbraco.AI.OpenAI" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
@@ -23,6 +26,7 @@
     <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
     <ProjectReference Include="..\ContentFreeze.Hangfire\ContentFreeze.Hangfire.csproj" />
     <ProjectReference Include="..\ContentFreeze.Forms\ContentFreeze.Forms.csproj" />
+    <ProjectReference Include="..\ContentFreeze.AI\ContentFreeze.AI.csproj" />
   </ItemGroup>
 
   <!--

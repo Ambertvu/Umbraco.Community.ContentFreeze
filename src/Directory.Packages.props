@@ -17,6 +17,10 @@
     <PackageVersion Include="Umbraco.Forms" Version="17.5.0" />
     <PackageVersion Include="Umbraco.Commerce" Version="17.2.3" />
     <PackageVersion Include="Umbraco.Commerce.Cms.Startup" Version="[17.1.2, 18.0.0)" />
+    <PackageVersion Include="Umbraco.AI.Core" Version="[17.0.0, 18.0.0)" />
+    <PackageVersion Include="Umbraco.AI" Version="17.3.1" />
+    <PackageVersion Include="Umbraco.AI.Prompt" Version="17.2.3" />
+    <PackageVersion Include="Umbraco.AI.OpenAI" Version="17.2.0" />
     <PackageVersion Include="uSync" Version="17.5.0" />
     <PackageVersion Include="Cultiv.Hangfire" Version="5.5.4" />
     <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />

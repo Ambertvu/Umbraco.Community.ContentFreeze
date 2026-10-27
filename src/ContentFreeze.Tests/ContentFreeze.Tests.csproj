@@ -21,6 +21,7 @@
     <ProjectReference Include="..\ContentFreeze.Hangfire\ContentFreeze.Hangfire.csproj" />
     <ProjectReference Include="..\ContentFreeze.Forms\ContentFreeze.Forms.csproj" />
     <ProjectReference Include="..\ContentFreeze.Commerce\ContentFreeze.Commerce.csproj" />
+    <ProjectReference Include="..\ContentFreeze.AI\ContentFreeze.AI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

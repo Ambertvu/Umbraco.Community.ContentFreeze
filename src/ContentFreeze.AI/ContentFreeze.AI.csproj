@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.ContentFreeze.AI</Product>
+    <PackageId>Umbraco.Community.ContentFreeze.AI</PackageId>
+    <Title>Content Freeze for Umbraco AI</Title>
+    <Description>Add-on for Umbraco.Community.ContentFreeze: freezes the Umbraco AI configuration (connections, profiles, contexts, guardrails, settings, prompts and agents) in the backoffice while a content freeze is active. Using AI keeps working.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;deployment;content-freeze;umbraco-ai</PackageTags>
+    <Authors>Ambert van Unen</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Ambert van Unen</Copyright>
+    <PackageProjectUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.AI.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ContentFreeze.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.AI.md">
+      <Pack>True</Pack>
+      <PackagePath>\README_nuget.md</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

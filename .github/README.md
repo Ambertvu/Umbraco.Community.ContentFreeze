@@ -365,6 +365,30 @@ Orders, carts, checkout, payments and payment provider callbacks are never block
 | `FreezeCustomers` | `false` | Customers. |
 | `FreezeOrders` | `false` | Editing, deleting and changing the status of orders and carts in the backoffice. Off by default, so fulfilment can continue during a deploy. |
 
+## Umbraco AI
+
+Install the add-on to freeze the Umbraco AI configuration too:
+
+`dotnet add package Umbraco.Community.ContentFreeze.AI`
+
+During a freeze, connections, profiles, contexts, guardrails, the AI settings, prompts and agents cannot be created, changed, deleted or rolled back. Using AI is never blocked: chat, running prompts and agents, property actions, embeddings, image generation and testing a connection keep working.
+
+Content that AI changes (for example through the copilot or a prompt applied to a property) is saved like any other change, so the core package already blocks it.
+
+```json
+"ContentFreeze": {
+  "AI": {
+    "FreezeConfiguration": true,
+    "FreezeTests": false
+  }
+}
+```
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `FreezeConfiguration` | `true` | Connections, profiles, contexts, guardrails, AI settings, prompts and agents. |
+| `FreezeTests` | `false` | AI tests. Running tests keeps working. |
+
 ## Freezing other packages
 
 Content Freeze has three extension points for packages that keep their own data. Register them in a composer that runs after `ContentFreezeComposer`:
@@ -453,7 +477,7 @@ The mode can be changed in appsettings without a restart.
 
 Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
 
-Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, its add-ons, uSync, Umbraco Forms and Cultiv.Hangfire installed, for trying changes by hand. Build it with `-p:WithCommerce=true` and point it at SQL Server to test the Commerce add-on; on SQLite, Commerce locks the database while saving a product with stock.
+Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, its add-ons, uSync, Umbraco Forms, Umbraco AI and Cultiv.Hangfire installed, for trying changes by hand. Build it with `-p:WithCommerce=true` and point it at SQL Server to test the Commerce add-on; on SQLite, Commerce locks the database while saving a product with stock.
 
 ## Acknowledgments
 

@@ -11,6 +11,6 @@ Safe deploys for Umbraco 17. Temporarily block content and media changes in the 
 - Every freeze has an end time and expires by itself.
 - Enforced on the server, with permission-based bypass, an audit trail, webhooks and a health check.
 - Pause background jobs during a freeze; hold back Hangfire jobs with the `Umbraco.Community.ContentFreeze.Hangfire` add-on.
-- Freeze Umbraco Forms and Umbraco Commerce with the `Umbraco.Community.ContentFreeze.Forms` and `.Commerce` add-ons.
+- Freeze Umbraco Forms, Umbraco Commerce and Umbraco AI with the `Umbraco.Community.ContentFreeze.Forms`, `.Commerce` and `.AI` add-ons.
 
 See the [documentation on GitHub](https://github.com/Ambertvu/Umbraco.Community.ContentFreeze) for setup and Azure Pipelines and GitHub Actions examples.
