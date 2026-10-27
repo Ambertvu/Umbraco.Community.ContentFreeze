@@ -12,7 +12,16 @@ Safe deploys for Umbraco. Content Freeze temporarily blocks content and media ch
 - **Enforced on the server.** Saves, publishes, moves, deletes and the rest are cancelled by notification handlers, not just hidden in the UI.
 - **Audit trail and webhooks.** See who froze editing, why and for how long, and send Slack or Teams messages through Umbraco webhooks.
 
-Content Freeze is for Umbraco 17. Umbraco 18 support follows once it has been tested there.
+## Versions
+
+The package's major version matches the Umbraco version it runs on, and so do the add-ons.
+
+| Umbraco | Content Freeze | Branch |
+|---|---|---|
+| 17 (LTS) | 17.x | `v17/dev` |
+| 18 | 18.x | `v18/dev` |
+
+This is the Umbraco 17 branch. It gets fixes for as long as Umbraco 17 is supported.
 
 ## Installation
 
@@ -370,6 +379,8 @@ Orders, carts, checkout, payments and payment provider callbacks are never block
 Install the add-on to freeze the Umbraco AI configuration too:
 
 `dotnet add package Umbraco.Community.ContentFreeze.AI`
+
+The add-on requires Umbraco AI 17. Sites on the older 1.x releases need to update Umbraco AI first.
 
 During a freeze, connections, profiles, contexts, guardrails, the AI settings, prompts and agents cannot be created, changed, deleted or rolled back. Using AI is never blocked: chat, running prompts and agents, property actions, embeddings, image generation and testing a connection keep working.
 

@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "v*/dev", "v*/main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "v*/dev", "v*/main" ]
 
 jobs:
   build:
