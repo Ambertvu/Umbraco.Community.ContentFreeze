@@ -14,6 +14,10 @@
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="Moq" />
     <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+    <!-- The real Umbraco AI controllers, so the AI rule tests break when Umbraco AI renames them. -->
+    <PackageReference Include="Umbraco.AI.Web" />
+    <PackageReference Include="Umbraco.AI.Prompt.Web" />
+    <PackageReference Include="Umbraco.AI.Agent.Web" />
   </ItemGroup>
 
   <ItemGroup>

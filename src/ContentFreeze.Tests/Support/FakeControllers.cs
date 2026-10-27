@@ -6,59 +6,6 @@ namespace Umbraco.Commerce.Cms.Web.Api.Storefront.Controllers
     internal class UpdateOrderManagementApiController;
 }
 
-namespace Umbraco.AI.Web.Api.Management.Connection.Controllers
-{
-    internal class UpdateConnectionController;
-
-    internal class TestConnectionController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.Settings.Controllers
-{
-    internal class UpdateSettingsController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.Test.Controllers
-{
-    internal class UpdateTestController;
-
-    internal class RunTestController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.TestRun.Controllers
-{
-    internal class DeleteTestRunController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.AuditLog.Controllers
-{
-    internal class DeleteAuditLogController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.Chat.Controllers
-{
-    internal class CompleteChatController;
-}
-
-namespace Umbraco.AI.Web.Api.Management.Versioning.Controllers
-{
-    internal class EntityVersionHistoryController;
-}
-
-namespace Umbraco.AI.Prompt.Web.Api.Management.Prompt.Controllers
-{
-    internal class CreatePromptController;
-
-    internal class ExecutePromptController;
-}
-
-namespace Umbraco.AI.Agent.Web.Api.Management.Agent.Controllers
-{
-    internal class DeleteAgentController;
-
-    internal class StreamAgentController;
-}
-
 
 namespace Umbraco.Forms.Web.Api.ManagementApi.Form
 {

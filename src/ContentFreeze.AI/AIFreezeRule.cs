@@ -29,6 +29,9 @@ internal class AIFreezeRule : IFreezeEndpointRule
 
     private const string RollbackController = "EntityVersionHistoryController";
 
+    // Picks the run new runs of a test are compared against.
+    private const string SetBaselineController = "SetBaselineController";
+
     private readonly IOptionsMonitor<ContentFreezeAIOptions> _options;
 
     public AIFreezeRule(IOptionsMonitor<ContentFreezeAIOptions> options) => _options = options;
@@ -36,7 +39,12 @@ internal class AIFreezeRule : IFreezeEndpointRule
     public string? GetOperation(ControllerActionDescriptor action, HttpRequest request)
     {
         var ns = action.ControllerTypeInfo.Namespace;
-        var prefix = ns is null ? null : ManagementApiNamespaces.FirstOrDefault(prefix => ns.StartsWith(prefix, StringComparison.Ordinal));
+        if (ns is null || ns.StartsWith("Umbraco.AI.", StringComparison.Ordinal) is false)
+        {
+            return null;
+        }
+
+        var prefix = Array.Find(ManagementApiNamespaces, prefix => ns.StartsWith(prefix, StringComparison.Ordinal));
         if (prefix is null)
         {
             return null;
@@ -52,7 +60,12 @@ internal class AIFreezeRule : IFreezeEndpointRule
             return (isTest ? options.FreezeTests : options.FreezeConfiguration) ? "ai rollback" : null;
         }
 
-        var area = ns![prefix.Length..].Split('.')[0];
+        if (controller == SetBaselineController)
+        {
+            return options.FreezeTests ? "ai test change" : null;
+        }
+
+        var area = ns[prefix.Length..].Split('.')[0];
         if (WriteVerbs.Any(verb => controller.StartsWith(verb + area, StringComparison.Ordinal)) is false)
         {
             return null;

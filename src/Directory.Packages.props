@@ -32,6 +32,9 @@
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.0" />
     <PackageVersion Include="Moq" Version="4.20.72" />
     <PackageVersion Include="Microsoft.Extensions.TimeProvider.Testing" Version="10.11.0" />
+    <PackageVersion Include="Umbraco.AI.Web" Version="17.3.1" />
+    <PackageVersion Include="Umbraco.AI.Prompt.Web" Version="17.2.3" />
+    <PackageVersion Include="Umbraco.AI.Agent.Web" Version="17.1.4" />
   </ItemGroup>
 
 </Project>

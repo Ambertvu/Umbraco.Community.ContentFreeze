@@ -43,49 +43,41 @@ internal class AIFreezeHandler :
         _options = options;
     }
 
-    public void Handle(AIConnectionSavingNotification notification) => Configuration(notification, "ai connection save");
+    public void Handle(AIConnectionSavingNotification notification) => Block(notification, "ai connection save", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIConnectionDeletingNotification notification) => Configuration(notification, "ai connection delete");
+    public void Handle(AIConnectionDeletingNotification notification) => Block(notification, "ai connection delete", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIConnectionRollingBackNotification notification) => Configuration(notification, "ai connection rollback");
+    public void Handle(AIConnectionRollingBackNotification notification) => Block(notification, "ai connection rollback", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIProfileSavingNotification notification) => Configuration(notification, "ai profile save");
+    public void Handle(AIProfileSavingNotification notification) => Block(notification, "ai profile save", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIProfileDeletingNotification notification) => Configuration(notification, "ai profile delete");
+    public void Handle(AIProfileDeletingNotification notification) => Block(notification, "ai profile delete", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIProfileRollingBackNotification notification) => Configuration(notification, "ai profile rollback");
+    public void Handle(AIProfileRollingBackNotification notification) => Block(notification, "ai profile rollback", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIContextSavingNotification notification) => Configuration(notification, "ai context save");
+    public void Handle(AIContextSavingNotification notification) => Block(notification, "ai context save", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIContextDeletingNotification notification) => Configuration(notification, "ai context delete");
+    public void Handle(AIContextDeletingNotification notification) => Block(notification, "ai context delete", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIContextRollingBackNotification notification) => Configuration(notification, "ai context rollback");
+    public void Handle(AIContextRollingBackNotification notification) => Block(notification, "ai context rollback", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIGuardrailSavingNotification notification) => Configuration(notification, "ai guardrail save");
+    public void Handle(AIGuardrailSavingNotification notification) => Block(notification, "ai guardrail save", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIGuardrailDeletingNotification notification) => Configuration(notification, "ai guardrail delete");
+    public void Handle(AIGuardrailDeletingNotification notification) => Block(notification, "ai guardrail delete", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AIGuardrailRollingBackNotification notification) => Configuration(notification, "ai guardrail rollback");
+    public void Handle(AIGuardrailRollingBackNotification notification) => Block(notification, "ai guardrail rollback", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AISettingsSavingNotification notification) => Configuration(notification, "ai settings save");
+    public void Handle(AISettingsSavingNotification notification) => Block(notification, "ai settings save", _options.CurrentValue.FreezeConfiguration);
 
-    public void Handle(AITestSavingNotification notification) => Test(notification, "ai test save");
+    public void Handle(AITestSavingNotification notification) => Block(notification, "ai test save", _options.CurrentValue.FreezeTests);
 
-    public void Handle(AITestDeletingNotification notification) => Test(notification, "ai test delete");
+    public void Handle(AITestDeletingNotification notification) => Block(notification, "ai test delete", _options.CurrentValue.FreezeTests);
 
-    public void Handle(AITestRollingBackNotification notification) => Test(notification, "ai test rollback");
+    public void Handle(AITestRollingBackNotification notification) => Block(notification, "ai test rollback", _options.CurrentValue.FreezeTests);
 
-    private void Configuration(ICancelableNotification notification, string operation)
+    private void Block(ICancelableNotification notification, string operation, bool frozen)
     {
-        if (_options.CurrentValue.FreezeConfiguration)
-        {
-            _enforcer.Block(notification, operation);
-        }
-    }
-
-    private void Test(ICancelableNotification notification, string operation)
-    {
-        if (_options.CurrentValue.FreezeTests)
+        if (frozen)
         {
             _enforcer.Block(notification, operation);
         }

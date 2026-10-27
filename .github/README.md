@@ -387,7 +387,7 @@ Content that AI changes (for example through the copilot or a prompt applied to 
 | Setting | Default | Meaning |
 |---|---|---|
 | `FreezeConfiguration` | `true` | Connections, profiles, contexts, guardrails, AI settings, prompts and agents. |
-| `FreezeTests` | `false` | AI tests. Running tests keeps working. |
+| `FreezeTests` | `false` | AI tests and their baseline runs. Running tests keeps working. |
 
 ## Freezing other packages
 

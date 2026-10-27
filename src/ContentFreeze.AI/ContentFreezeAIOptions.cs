@@ -11,6 +11,6 @@ public class ContentFreezeAIOptions
     /// <summary>Connections, profiles, contexts, guardrails, AI settings, prompts and agents, and rolling them back.</summary>
     public bool FreezeConfiguration { get; set; } = true;
 
-    /// <summary>AI tests. Running tests keeps working.</summary>
+    /// <summary>AI tests and their baseline runs. Running tests keeps working.</summary>
     public bool FreezeTests { get; set; }
 }

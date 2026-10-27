@@ -56,11 +56,14 @@ public class AIFreezeTests
     {
         Assert.Null(Operation<Management.Test.Controllers.UpdateTestController>());
         Assert.Null(Operation<Management.Versioning.Controllers.EntityVersionHistoryController>("POST", "test"));
+        Assert.Null(Operation<Management.TestRun.Controllers.SetBaselineController>("POST"));
 
         _options.FreezeTests = true;
 
         Assert.Equal("ai test change", Operation<Management.Test.Controllers.UpdateTestController>());
         Assert.Equal("ai rollback", Operation<Management.Versioning.Controllers.EntityVersionHistoryController>("POST", "test"));
+        Assert.Equal("ai test change", Operation<Management.TestRun.Controllers.SetBaselineController>("POST"));
+        Assert.Null(Operation<Management.Test.Controllers.RunTestController>("POST"));
     }
 
     [Fact]
@@ -84,6 +87,7 @@ public class AIFreezeTests
 
         _options.FreezeTests = true;
         Assert.Contains("UmbracoAI.WorkspaceAction.Test.Save", Aliases());
+        Assert.Contains("UmbracoAI.EntityAction.TestRun.SetBaseline", Aliases());
     }
 
     [Fact]

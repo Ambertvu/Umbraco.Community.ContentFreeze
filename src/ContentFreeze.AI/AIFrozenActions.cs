@@ -6,7 +6,11 @@ namespace ContentFreeze.AI;
 /// <summary>
 /// The Umbraco AI backoffice actions to hide during a freeze. Aliases from packages that are not installed are ignored.
 /// </summary>
-/// <remarks>Rollback is a button inside the version history without an alias; only the server stops it.</remarks>
+/// <remarks>
+/// Rollback is a button inside the version history without an alias; only the server stops it. The copilot's Save and
+/// SaveAndPublish tools cannot be hidden this way (the copilot ignores conditions on its tools); the core package
+/// blocks the save they make.
+/// </remarks>
 internal class AIFrozenActions : IFrozenActionsProvider
 {
     private static readonly string[] CoreEntities = ["Connection", "Profile", "Context", "Guardrail"];
@@ -31,10 +35,9 @@ internal class AIFrozenActions : IFrozenActionsProvider
         if (options.FreezeTests)
         {
             aliases.AddRange(EntityAliases("UmbracoAI", "Test"));
+            aliases.Add("UmbracoAI.EntityAction.TestRun.SetBaseline");
         }
 
-        // The copilot's tools to save or publish the document it works on: the document cannot be saved anyway.
-        aliases.AddRange(["Uai.AgentFrontendTool.Save", "Uai.AgentFrontendTool.SaveAndPublish"]);
         return aliases;
     }
 
