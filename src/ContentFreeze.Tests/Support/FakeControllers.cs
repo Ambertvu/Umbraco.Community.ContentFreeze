@@ -1,5 +1,11 @@
-// Stand-ins for Umbraco Forms controllers (the tests do not reference Forms.Web): the freeze rules only look at the
-// namespace and class name.
+// Stand-ins for Umbraco Forms controllers (the tests do not reference Forms.Web), and for a Commerce controller outside
+// the Management API: the freeze rules only look at the namespace and class name.
+
+namespace Umbraco.Commerce.Cms.Web.Api.Storefront.Controllers
+{
+    internal class UpdateOrderManagementApiController;
+}
+
 
 namespace Umbraco.Forms.Web.Api.ManagementApi.Form
 {

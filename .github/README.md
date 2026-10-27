@@ -330,6 +330,41 @@ During a freeze, forms (with their workflows), folders, data sources and prevalu
 
 Fields in the form designer stay editable during a freeze; the form just cannot be saved. Changes made from code are blocked too; uSync.Forms imports go through, like other [uSync](#usync) imports.
 
+## Umbraco Commerce
+
+Install the add-on when the site runs Umbraco Commerce:
+
+`dotnet add package Umbraco.Community.ContentFreeze.Commerce`
+
+Products are content, so the core package already freezes them. The add-on adds:
+
+- **Settings:** stores, currencies, countries and regions, tax classes and calculation methods, payment and shipping methods, order statuses, locations, email, print and export templates, and product attributes and presets cannot be created, changed, sorted or deleted in the backoffice.
+- **Stock:** without the add-on, a product save that the freeze blocks **still changes the product's stock**. Commerce copies the stock value to its own tables while the product is being saved, and does not check whether the save was cancelled. The add-on stops that, and also blocks stock changes through Commerce's own product API.
+
+Orders, carts, checkout, payments and payment provider callbacks are never blocked, in either enforcement mode. Stock that an order books off still changes. Capturing, cancelling and refunding payments, and finalizing a cart, keep working in the backoffice too.
+
+```json
+"ContentFreeze": {
+  "Commerce": {
+    "FreezeSettings": true,
+    "FreezeStock": true,
+    "FreezeDiscounts": false,
+    "FreezeGiftCards": false,
+    "FreezeCustomers": false,
+    "FreezeOrders": false
+  }
+}
+```
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `FreezeSettings` | `true` | The store settings listed above. |
+| `FreezeStock` | `true` | Stock edited in the backoffice. |
+| `FreezeDiscounts` | `false` | Discounts. |
+| `FreezeGiftCards` | `false` | Gift cards created or edited in the backoffice. Gift cards that orders create keep working. |
+| `FreezeCustomers` | `false` | Customers. |
+| `FreezeOrders` | `false` | Editing, deleting and changing the status of orders and carts in the backoffice. Off by default, so fulfilment can continue during a deploy. |
+
 ## Freezing other packages
 
 Content Freeze has three extension points for packages that keep their own data. Register them in a composer that runs after `ContentFreezeComposer`:
@@ -418,7 +453,7 @@ The mode can be changed in appsettings without a restart.
 
 Contributions to this package are most welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md).
 
-Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, its add-ons, uSync, Umbraco Forms and Cultiv.Hangfire installed, for trying changes by hand.
+Run the tests with `dotnet test src/ContentFreeze.slnx`. `src/ContentFreeze.TestSite` is a site with the package, its add-ons, uSync, Umbraco Forms and Cultiv.Hangfire installed, for trying changes by hand. Build it with `-p:WithCommerce=true` and point it at SQL Server to test the Commerce add-on; on SQLite, Commerce locks the database while saving a product with stock.
 
 ## Acknowledgments
 

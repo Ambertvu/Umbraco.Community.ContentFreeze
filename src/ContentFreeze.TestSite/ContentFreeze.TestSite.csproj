@@ -25,6 +25,15 @@
     <ProjectReference Include="..\ContentFreeze.Forms\ContentFreeze.Forms.csproj" />
   </ItemGroup>
 
+  <!--
+    Umbraco Commerce, for testing the Commerce add-on: dotnet run -p:WithCommerce=true, against SQL Server.
+    Not on by default: on SQLite, Commerce's stock sync locks the database while a product is saved.
+  -->
+  <ItemGroup Condition="'$(WithCommerce)' == 'true'">
+    <PackageReference Include="Umbraco.Commerce" />
+    <ProjectReference Include="..\ContentFreeze.Commerce\ContentFreeze.Commerce.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>

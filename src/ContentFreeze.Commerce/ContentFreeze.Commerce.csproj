@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Product>Umbraco.Community.ContentFreeze.Commerce</Product>
+    <PackageId>Umbraco.Community.ContentFreeze.Commerce</PackageId>
+    <Title>Content Freeze for Umbraco Commerce</Title>
+    <Description>Add-on for Umbraco.Community.ContentFreeze: freezes Umbraco Commerce settings in the backoffice while a content freeze is active, and stops product stock from changing when a frozen product save is blocked. Orders, carts, checkout and payments keep working.</Description>
+    <PackageTags>umbraco;umbraco-marketplace;deployment;content-freeze;umbraco-commerce</PackageTags>
+    <Authors>Ambert van Unen</Authors>
+    <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Ambert van Unen</Copyright>
+    <PackageProjectUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Ambertvu/Umbraco.Community.ContentFreeze</RepositoryUrl>
+    <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Commerce.Cms.Startup" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContentFreeze\ContentFreeze.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ContentFreeze.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README_nuget.Commerce.md">
+      <Pack>True</Pack>
+      <PackagePath>\README_nuget.md</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
