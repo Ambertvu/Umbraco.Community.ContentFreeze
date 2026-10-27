@@ -18,6 +18,20 @@ public class FreezeStatusResponseModel
     public bool CanBypass { get; init; }
 }
 
+/// <summary>
+/// What the login screen shows. Anyone can request it, so it holds no reason, ids or names.
+/// </summary>
+public class FreezeLoginStatusResponseModel
+{
+    public DateTimeOffset ServerTime { get; init; }
+
+    public FreezeState? State { get; init; }
+
+    public DateTimeOffset? StartsAt { get; init; }
+
+    public DateTimeOffset? EndsAt { get; init; }
+}
+
 public class FreezeResponseModel
 {
     public int Id { get; init; }

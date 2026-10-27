@@ -126,8 +126,8 @@ class c {
     });
   }
 }
-const C = 3e4, p = [5, 1], g = "ContentFreeze.Announced";
-class v extends O {
+const C = 3e4, p = [5, 1], v = "ContentFreeze.Announced";
+class g extends O {
   constructor(e) {
     super(e, w), this.#e = new b(void 0), this.status = this.#e.asObservable(), this.freeze = this.#e.asObservablePart((t) => t?.freeze ?? void 0), this.canManage = this.#e.asObservablePart((t) => t?.canManage ?? !1), this.#a = new b("none"), this.phase = this.#a.asObservable(), this.#n = new E(!1), this.isLocked = this.#n.asObservable(), this.#r = new A(0), this.secondsRemaining = this.#r.asObservable(), this.#c = 0, this.#t = this.#p(), this.#s = "none", this.#o = () => {
       document.visibilityState === "visible" && this.refresh();
@@ -148,7 +148,8 @@ class v extends O {
     return Date.now() + this.#c;
   }
   async refresh() {
-    const { data: e } = await c.status();
+    const e = await c.status().then((t) => t.data).catch(() => {
+    });
     e && (this.#c = Date.parse(e.serverTime) - Date.now(), this.#e.setValue(e), this.#l());
   }
   async schedule(e) {
@@ -221,7 +222,7 @@ class v extends O {
   // Remembered per browser tab, so a page reload does not repeat toasts the editor has already seen.
   #p() {
     try {
-      const e = sessionStorage.getItem(g);
+      const e = sessionStorage.getItem(v);
       return new Set(e ? JSON.parse(e) : []);
     } catch {
       return /* @__PURE__ */ new Set();
@@ -229,7 +230,7 @@ class v extends O {
   }
   #y() {
     try {
-      sessionStorage.setItem(g, JSON.stringify([...this.#t].slice(-50)));
+      sessionStorage.setItem(v, JSON.stringify([...this.#t].slice(-50)));
     } catch {
     }
   }
@@ -255,8 +256,8 @@ function S(a) {
 const L = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   CONTENT_FREEZE_CONTEXT: w,
-  ContentFreezeContext: v,
-  api: v,
+  ContentFreezeContext: g,
+  api: g,
   formatDateTime: k,
   formatDuration: S,
   formatTime: u
@@ -269,4 +270,4 @@ export {
   L as c,
   S as f
 };
-//# sourceMappingURL=freeze.context-DB6BsqyL.js.map
+//# sourceMappingURL=freeze.context-UDroHYhG.js.map

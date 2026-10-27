@@ -3,7 +3,7 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     type: "condition",
     alias: o,
     name: "Content Freeze Not Frozen Condition",
-    api: () => import("./not-frozen.condition-B2oKE7fm.js")
+    api: () => import("./not-frozen.condition-DkW7eW7R.js")
   }
 ], y = [
   // Document workspace
@@ -70,7 +70,7 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     type: "globalContext",
     alias: "ContentFreeze.GlobalContext",
     name: "Content Freeze Global Context",
-    api: () => import("./freeze.context-DB6BsqyL.js").then((n) => n.c)
+    api: () => import("./freeze.context-UDroHYhG.js").then((n) => n.c)
   }
 ], t = "ContentFreeze.Manage", a = "ContentFreeze.Bypass", e = "content-freeze", m = [
   {
@@ -113,7 +113,7 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     type: "dashboard",
     alias: "ContentFreeze.Dashboard",
     name: "Content Freeze Dashboard",
-    element: () => import("./freeze-dashboard.element-D-nPFHvU.js"),
+    element: () => import("./freeze-dashboard.element-BaJ51hzR.js"),
     weight: 50,
     meta: {
       label: "Content Freeze",
@@ -129,14 +129,14 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     name: "Content Freeze Entrypoint",
     alias: "ContentFreeze.Entrypoint",
     type: "backofficeEntryPoint",
-    js: () => import("./entrypoint-OPxoXwrr.js")
+    js: () => import("./entrypoint-CBuXVBzm.js")
   }
 ], l = [
   {
     type: "headerApp",
     alias: "ContentFreeze.HeaderApp",
     name: "Content Freeze Header App",
-    element: () => import("./freeze-header-app.element-jr1iL1Jf.js"),
+    element: () => import("./freeze-header-app.element-O-W0VIkW.js"),
     // Left of search (900), so it is the first thing in the top bar.
     weight: 950
   }
@@ -145,7 +145,7 @@ const o = "ContentFreeze.Condition.NotFrozen", i = [
     type: "workspaceContext",
     alias: "ContentFreeze.WorkspaceContext.ReadOnly",
     name: "Content Freeze Read-only Workspace Context",
-    api: () => import("./freeze.workspace-context-CtAFgqD0.js"),
+    api: () => import("./freeze.workspace-context-DL2ggEAV.js"),
     conditions: [
       {
         alias: "Umb.Condition.WorkspaceAlias",
@@ -167,4 +167,4 @@ export {
   y as F,
   u as m
 };
-//# sourceMappingURL=bundle.manifests-BkEayc_2.js.map
+//# sourceMappingURL=bundle.manifests-CsFx7rxU.js.map

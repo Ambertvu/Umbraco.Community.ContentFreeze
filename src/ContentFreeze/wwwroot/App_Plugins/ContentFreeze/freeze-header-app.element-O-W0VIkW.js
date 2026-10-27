@@ -1,6 +1,6 @@
 import { nothing as c, html as r, css as _, state as l, customElement as f } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement as b } from "@umbraco-cms/backoffice/lit-element";
-import { C as g, f as h, a as y, b as z } from "./freeze.context-DB6BsqyL.js";
+import { C as g, f as h, a as y, b as z } from "./freeze.context-UDroHYhG.js";
 var E = Object.defineProperty, $ = Object.getOwnPropertyDescriptor, m = (e) => {
   throw TypeError(e);
 }, i = (e, t, s, o) => {
@@ -111,4 +111,4 @@ export {
   n as ContentFreezeHeaderAppElement,
   n as element
 };
-//# sourceMappingURL=freeze-header-app.element-jr1iL1Jf.js.map
+//# sourceMappingURL=freeze-header-app.element-O-W0VIkW.js.map

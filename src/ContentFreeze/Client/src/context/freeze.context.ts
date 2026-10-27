@@ -61,7 +61,10 @@ export class ContentFreezeContext extends UmbContextBase {
   }
 
   async refresh() {
-    const { data } = await FreezeService.status();
+    // Polled in the background: a server that is briefly unreachable (a deploy, a restart) is not an error.
+    const data = await FreezeService.status()
+      .then((response) => response.data)
+      .catch(() => undefined);
     if (!data) {
       return;
     }

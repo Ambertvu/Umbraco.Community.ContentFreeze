@@ -71,6 +71,12 @@ On install, *Manage freezes* is given to Administrators. Nobody gets *Edit durin
 
 **Settings → Content Freeze** (needs *Manage freezes*) shows the current freeze: who started it (a user or a pipeline's API user), its correlation id, reason and times. From there you can extend it, end it early, or cancel one that has not started. With no freeze running, you can start one by hand. The history keeps a log per freeze, including how many changes were blocked.
 
+## Login screen
+
+Editors who log in during a freeze, or shortly before one, see a notice above the login form: when editing will be frozen, or until when it is frozen. It switches from one to the other at the start time and disappears when the freeze ends, without reloading the page.
+
+Anyone can open the login screen, so the notice shows only the times: not the reason, the correlation id or who started the freeze. Set `ShowOnLoginScreen` to `false` to leave it out.
+
 ## Using it from a pipeline
 
 ### 1. Create an API user
@@ -88,6 +94,7 @@ All endpoints are under `/umbraco/contentfreeze/api/v1` and need a bearer token 
 |---|---|---|
 | `POST` | `/freeze` | Schedule a freeze or start one now. `201` new, `200` existing (same correlation id), `409` another freeze is scheduled or active |
 | `GET` | `/freeze/status` | The scheduled or active freeze, if any |
+| `GET` | `/freeze/login-status` | Only the state and times, without authentication. Used by the login screen |
 | `GET` | `/freeze/{id}` | A freeze by id, key or correlation id |
 | `GET` | `/freeze/{id}/assert-active` | `200` when active, `409` otherwise. Use before a step that must not run while editors edit |
 | `POST` | `/freeze/{id}/extend` | Push the end back: `{ "minutes": 15, "reason": "..." }` |
@@ -316,6 +323,7 @@ There is also a health check, **Content Freeze**, in the Health Check dashboard.
   "MinimumWarningMinutes": 0,
   "DeferScheduledPublishing": true,
   "AllowUSyncImports": true,
+  "ShowOnLoginScreen": true,
   "PausedJobs": [],
   "FreezeDictionary": true,
   "FreezeDomains": true,
@@ -333,6 +341,7 @@ There is also a health check, **Content Freeze**, in the Health Check dashboard.
 | `MinimumWarningMinutes` | `0` | Minimum time between scheduling and start. Requests can skip it with `"force": true`. |
 | `DeferScheduledPublishing` | `true` | Hold back scheduled publishing during a freeze. |
 | `AllowUSyncImports` | `true` | Let uSync imports through during a freeze. See [uSync](#usync). |
+| `ShowOnLoginScreen` | `true` | Show a scheduled or active freeze on the login screen. See [Login screen](#login-screen). |
 | `PausedJobs` | empty | Background jobs that skip their runs during a freeze. See [Background jobs](#background-jobs). |
 | `FreezeDictionary`, `FreezeDomains`, `FreezePublicAccess`, `FreezeBlueprints` | `true` | Include these in the freeze. |
 
@@ -347,6 +356,7 @@ The mode can be changed in appsettings without a restart.
 
 - **Error messages for bulk actions and publishing.** A blocked save shows the freeze message. When publishing, or using bulk actions in a list view, Umbraco shows its own generic error next to it.
 - **Load balancing.** Changes to a freeze reach the other servers' caches through Umbraco's database messenger (5 seconds by default). Enforcement reads the database directly, so blocking is never late; only the banner can be.
+- **Login screen notice.** It appears when the login screen opens during or before a freeze; a freeze scheduled while the login screen is already open shows after a reload. It is not shown on the two-factor and password reset screens.
 - **Webhooks** fire on the scheduling server (or a single server), as with all Umbraco webhooks.
 - **One freeze at a time.** Recurring or overlapping freeze windows are not supported yet.
 

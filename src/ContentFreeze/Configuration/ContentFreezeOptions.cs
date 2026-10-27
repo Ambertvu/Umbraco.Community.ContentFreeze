@@ -38,6 +38,11 @@ public class ContentFreezeOptions
     public bool DeferScheduledPublishing { get; set; } = true;
 
     /// <summary>
+    /// Shows a scheduled or active freeze on the backoffice login screen, with its times but not its reason.
+    /// </summary>
+    public bool ShowOnLoginScreen { get; set; } = true;
+
+    /// <summary>
     /// Lets uSync imports write during a freeze, at startup and from the dashboard alike: a deploy usually
     /// imports while editing is frozen.
     /// </summary>

@@ -1,6 +1,6 @@
 import { UMB_AUTH_CONTEXT as e } from "@umbraco-cms/backoffice/auth";
 import { c as i } from "./client.gen-CtZ_TvPO.js";
-import { F as r, C as c } from "./bundle.manifests-BkEayc_2.js";
+import { F as r, C as c } from "./bundle.manifests-CsFx7rxU.js";
 const T = async (n, o) => {
   for (const a of r)
     o.appendCondition(a, { alias: c });
@@ -16,4 +16,4 @@ export {
   T as onInit,
   _ as onUnload
 };
-//# sourceMappingURL=entrypoint-OPxoXwrr.js.map
+//# sourceMappingURL=entrypoint-CBuXVBzm.js.map

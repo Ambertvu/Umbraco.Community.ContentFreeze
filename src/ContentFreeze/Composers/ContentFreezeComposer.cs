@@ -2,6 +2,7 @@ using ContentFreeze.Authorization;
 using ContentFreeze.BackgroundJobs;
 using ContentFreeze.Configuration;
 using ContentFreeze.Enforcement;
+using ContentFreeze.Manifest;
 using ContentFreeze.Migrations;
 using ContentFreeze.Persistence;
 using ContentFreeze.Services;
@@ -13,6 +14,7 @@ using OpenIddict.Validation.AspNetCore;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
+using Umbraco.Cms.Infrastructure.Manifest;
 using Umbraco.Extensions;
 
 namespace ContentFreeze.Composers;
@@ -32,6 +34,8 @@ public class ContentFreezeComposer : IComposer
         builder.AddFreezeEnforcement();
         builder.Services.AddRecurringBackgroundJob<FreezeMaintenanceJob>();
         builder.AddPausableJobs();
+
+        builder.Services.AddSingleton<IPackageManifestReader, LoginNoticeManifestReader>();
 
         builder.Services.AddScoped<BlueprintFreezeFilter>();
         builder.Services.Configure<MvcOptions>(options => options.Filters.AddService<BlueprintFreezeFilter>());

@@ -51,6 +51,24 @@ public class FreezeController : ContentFreezeApiControllerBase
         };
     }
 
+    /// <summary>The times of the scheduled or active freeze, for the notice on the login screen.</summary>
+    [AllowAnonymous]
+    [HttpGet("freeze/login-status")]
+    [ProducesResponseType<FreezeLoginStatusResponseModel>(StatusCodes.Status200OK)]
+    public FreezeLoginStatusResponseModel LoginStatus()
+    {
+        DateTime now = _freezeService.UtcNow;
+        ContentFreezeOptions options = _options.CurrentValue;
+        Freeze? freeze = options.ShowOnLoginScreen && options.Disabled is false ? _freezeService.GetCurrent() : null;
+        return new FreezeLoginStatusResponseModel
+        {
+            ServerTime = FreezeResponseModel.Utc(now),
+            State = freeze?.GetState(now),
+            StartsAt = freeze is null ? null : FreezeResponseModel.Utc(freeze.StartsAt),
+            EndsAt = freeze is null ? null : FreezeResponseModel.Utc(freeze.EndsAt),
+        };
+    }
+
     /// <summary>A freeze by key, id or correlation id.</summary>
     [HttpGet("freeze/{id}")]
     [ProducesResponseType<FreezeResponseModel>(StatusCodes.Status200OK)]
