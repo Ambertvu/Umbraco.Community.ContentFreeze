@@ -17,7 +17,7 @@ namespace ContentFreeze.Enforcement;
 public interface IFreezeEndpointRule
 {
     /// <summary>A short description of the change (for logs), or null when this rule does not apply.</summary>
-    string? GetOperation(ControllerActionDescriptor action, HttpRequest request);
+    public string? GetOperation(ControllerActionDescriptor action, HttpRequest request);
 }
 
 /// <summary>
@@ -26,7 +26,7 @@ public interface IFreezeEndpointRule
 /// <remarks>Read once, when the backoffice manifests are built; changing the result needs a restart.</remarks>
 public interface IFrozenActionsProvider
 {
-    IEnumerable<string> GetFrozenActionAliases();
+    public IEnumerable<string> GetFrozenActionAliases();
 }
 
 /// <summary>
@@ -35,7 +35,7 @@ public interface IFrozenActionsProvider
 public interface IFreezeEnforcer
 {
     /// <returns>True when the notification was cancelled.</returns>
-    bool Block(ICancelableNotification notification, string operation);
+    public bool Block(ICancelableNotification notification, string operation);
 }
 
 public static class FreezeHttpMethods

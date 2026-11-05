@@ -7,9 +7,6 @@ namespace ContentFreeze.Composers
 {
     public class ContentFreezeApiComposer : IComposer
     {
-        // Related documentation:
-        // https://docs.umbraco.com/umbraco-cms/tutorials/creating-a-backoffice-api
-        // https://docs.umbraco.com/umbraco-cms/tutorials/creating-a-backoffice-api/umbraco-schema-and-operation-ids
         public void Compose(IUmbracoBuilder builder) =>
             builder.AddBackOfficeOpenApiDocument(
                 Constants.ApiName,

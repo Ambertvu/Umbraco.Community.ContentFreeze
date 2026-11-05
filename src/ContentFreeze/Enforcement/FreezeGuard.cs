@@ -17,10 +17,10 @@ public interface IFreezeGuard
     /// <summary>
     /// Returns the active freeze that blocks the current write, or null when the write may go ahead.
     /// </summary>
-    Freeze? GetBlockingFreeze(string operation);
+    public Freeze? GetBlockingFreeze(string operation);
 
     /// <summary>The message shown to the user when a write is blocked.</summary>
-    string GetBlockedMessage(Freeze freeze);
+    public string GetBlockedMessage(Freeze freeze);
 }
 
 internal class FreezeGuard : IFreezeGuard

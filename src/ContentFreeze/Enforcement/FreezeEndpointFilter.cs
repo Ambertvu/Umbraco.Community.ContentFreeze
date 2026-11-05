@@ -10,7 +10,7 @@ namespace ContentFreeze.Enforcement;
 
 /// <summary>
 /// Answers Management API writes picked out by an <see cref="IFreezeEndpointRule"/> with a 400 and the freeze
-/// message. The backoffice shows a 400 ProblemDetails as an error toast.
+/// message. The backoffice shows 400 ProblemDetails as an error toast.
 /// </summary>
 internal class FreezeEndpointFilter : IAsyncActionFilter
 {
