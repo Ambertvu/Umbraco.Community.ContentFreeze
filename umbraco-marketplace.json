@@ -9,6 +9,25 @@
     "LicenseTypes": [ "Free" ],
     "IssueTrackerUrl": "https://github.com/Ambertvu/Umbraco.Community.ContentFreeze/issues",
     "PackageType": "Package",
+    "RelatedPackages": [
+      {
+        "GroupTitle": "Add-ons",
+        "PackageId": "Umbraco.Community.ContentFreeze.Forms",
+        "Description": "Also freezes Umbraco Forms in the backoffice. Website form submissions keep working."
+      },
+      {
+        "PackageId": "Umbraco.Community.ContentFreeze.Commerce",
+        "Description": "Also freezes Umbraco Commerce settings. Orders, carts, checkout and payments keep working."
+      },
+      {
+        "PackageId": "Umbraco.Community.ContentFreeze.AI",
+        "Description": "Also freezes the Umbraco AI configuration. Using AI keeps working."
+      },
+      {
+        "PackageId": "Umbraco.Community.ContentFreeze.Hangfire",
+        "Description": "Holds back Hangfire jobs until the freeze ends."
+      }
+    ],
     "Tags": [ "deployment", "ci-cd", "content freeze", "read-only", "usync", "editors" ],
     "Title": "Content Freeze"
   }
