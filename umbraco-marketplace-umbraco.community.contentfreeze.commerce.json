@@ -1,0 +1,20 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Ambert van Unen",
+    "ImageUrl": "https://github.com/Ambertvu.png"
+  },
+  "Category": "Developer Tools",
+  "Description": "Add-on for Content Freeze: freezes Umbraco Commerce settings in the backoffice while a content freeze is active, and stops product stock from changing when a frozen product save is blocked. Orders, carts, checkout and payments keep working.",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/Ambertvu/Umbraco.Community.ContentFreeze/issues",
+  "PackageType": "Package",
+  "RelatedPackages": [
+    {
+      "PackageId": "Umbraco.Community.ContentFreeze",
+      "Description": "The Content Freeze package this add-on extends."
+    }
+  ],
+  "Tags": [ "deployment", "content freeze", "umbraco commerce", "read-only" ],
+  "Title": "Content Freeze for Umbraco Commerce"
+}

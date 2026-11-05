@@ -1,0 +1,20 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Ambert van Unen",
+    "ImageUrl": "https://github.com/Ambertvu.png"
+  },
+  "Category": "Developer Tools",
+  "Description": "Add-on for Content Freeze: freezes Umbraco Forms forms, workflows, folders, data sources and prevalue sources in the backoffice while a content freeze is active. Website form submissions keep working.",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/Ambertvu/Umbraco.Community.ContentFreeze/issues",
+  "PackageType": "Package",
+  "RelatedPackages": [
+    {
+      "PackageId": "Umbraco.Community.ContentFreeze",
+      "Description": "The Content Freeze package this add-on extends."
+    }
+  ],
+  "Tags": [ "deployment", "content freeze", "umbraco forms", "read-only" ],
+  "Title": "Content Freeze for Umbraco Forms"
+}
